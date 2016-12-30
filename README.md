@@ -1,5 +1,7 @@
 # ActiveInteraction::ActiveJob
 
+[![Gem Version](https://badge.fury.io/rb/active_interaction-active_job.svg)](https://badge.fury.io/rb/active_interaction-active_job)
+
 This gem adds [active_job](http://edgeguides.rubyonrails.org/active_job_basics.html) support to [active_interaction](https://github.com/orgsync/active_interaction) gem.
 
 With this gem you no longer need to create a separate Job class for the each interaction, this gem does it automatically for you.
