@@ -30,7 +30,7 @@ module ActiveInteraction::ActiveJob::Core
     end
 
     def set options = {}
-      ::ActiveJob::ConfiguredJob.new(job_class, options)
+      ::ActiveInteraction::ActiveJob::ConfiguredJob.new(job_class, options)
     end
 
     alias_method :delay, :set

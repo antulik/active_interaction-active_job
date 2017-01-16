@@ -10,6 +10,7 @@ module ActiveInteraction
     extend ActiveSupport::Autoload
 
     autoload :Core
+    autoload :ConfiguredJob
     autoload :DefaultJob
     autoload :JobHelper
   end
