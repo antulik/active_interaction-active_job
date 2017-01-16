@@ -6,9 +6,9 @@ module ActiveInteraction::ActiveJob::Core
   end
 
   module ClassMethods
-    def define_job_class
+    def define_job_class klass = default_job_class
       unless const_defined?(:Job, false)
-        const_set(:Job, Class.new(default_job_class))
+        const_set(:Job, Class.new(klass))
       end
     end
 
@@ -26,11 +26,11 @@ module ActiveInteraction::ActiveJob::Core
 
     def inherited subclass
       super
-      subclass.const_set(:Job, Class.new(job_class))
+      subclass.define_job_class job_class
     end
 
     def set options = {}
-      ActiveInteraction::ActiveJob::ConfiguredJob.new(job_class, self, options)
+      ::ActiveJob::ConfiguredJob.new(job_class, options)
     end
 
     alias_method :delay, :set

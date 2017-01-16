@@ -1,5 +1,5 @@
 module ActiveInteraction::ActiveJob::JobHelper
-  def perform interaction_klass_name, *args
-    interaction_klass_name.constantize.run!(*args)
+  def perform *args
+    self.class.parent.run!(*args)
   end
 end
