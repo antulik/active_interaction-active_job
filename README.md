@@ -34,8 +34,6 @@ end
 
 
 Add.delay.run(x: 1, y: 2)
-Add.async(x: 1, y: 2) # same as above
-
 Add.delay(queue_name: 'fast', wait: 1.week).run(x: 1, y: 2)
 ```
 
@@ -88,8 +86,6 @@ end
 
 
 AddOrDivide.delay.run(x: 4, y: 2, divide: true)
-AddOrDivide.async(x: 4, y: 2, divide: true) # same as above
-
 AddOrDivide.delay(queue_name: 'fast', wait: 1.week).run(x: 4, y: 2, divide: true)
 ```
 
@@ -120,6 +116,8 @@ end
 
 Add.delay(wait: 1.minute, queue: 'slow').run
 ```
+
+In sidekiq mode `delay` method accepts anything sidekiq `set` [method](https://github.com/mperham/sidekiq/wiki/Advanced-Options#workers) (`queue`, `retry`, `backtrace`, etc) plus two additional: `wait` and `wait_until`.
 
 
 ## Development
