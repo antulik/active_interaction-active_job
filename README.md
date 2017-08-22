@@ -90,6 +90,34 @@ AddOrDivide.async(x: 4, y: 2, divide: true) # same as above
 AddOrDivide.delay(queue_name: 'fast', wait: 1.week).run(x: 4, y: 2, divide: true)
 ```
 
+## Sidekiq without ActiveJob
+
+You can use sidekiq directly if you need more control. Sidekiq integration comes with default GlobalID support.
+
+```ruby
+class BaseInteraction < ActiveInteraction::Base
+  include ActiveInteraction::ActiveJob::Sidekiq::Core
+
+  class Job
+    include Sidekiq::Worker
+    include ActiveInteraction::ActiveJob::Sidekiq::JobHelper
+
+    sidekiq_options queue: 'default'
+  end
+end
+
+class Add < BaseInteraction
+  job do
+    sidekiq_options queue: 'critical'
+  end
+
+  def execute
+  end
+end
+
+Add.delay(wait: 1.minute, queue: 'slow').run
+```
+
 
 ## Development
 

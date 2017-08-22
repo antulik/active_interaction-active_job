@@ -13,5 +13,14 @@ module ActiveInteraction
     autoload :ConfiguredJob
     autoload :DefaultJob
     autoload :JobHelper
+
+    module Sidekiq
+      extend ActiveSupport::Autoload
+
+      autoload :Core
+      autoload :ConfiguredJob
+      autoload :DefaultJob
+      autoload :JobHelper
+    end
   end
 end

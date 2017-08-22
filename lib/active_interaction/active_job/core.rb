@@ -19,6 +19,7 @@ module ActiveInteraction::ActiveJob::Core
     def active_job &block
       job_class.class_exec(&block)
     end
+    alias_method :job, :active_job
 
     def job_class
       const_get(:Job, false)
@@ -34,9 +35,5 @@ module ActiveInteraction::ActiveJob::Core
     end
 
     alias_method :delay, :set
-
-    def async *args
-      delay.run! *args
-    end
   end
 end
