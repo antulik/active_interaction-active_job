@@ -3,11 +3,7 @@ module ActiveInteraction::ActiveJob::Sidekiq::Core
   include ActiveInteraction::ActiveJob::Core
 
   module ClassMethods
-    def default_job_class
-      ActiveInteraction::ActiveJob::Sidekiq::DefaultJob
-    end
-
-    def set options = {}
+    def delay options = {}
       ::ActiveInteraction::ActiveJob::Sidekiq::ConfiguredJob.new(job_class, options)
     end
   end

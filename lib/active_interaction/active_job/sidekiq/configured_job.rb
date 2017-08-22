@@ -4,18 +4,18 @@ class ActiveInteraction::ActiveJob::Sidekiq::ConfiguredJob < ::ActiveJob::Config
   end
 
   def perform_later(*args)
-    wait = @options.delete(:wait)
-    wait_until = @options.delete(:wait_until)
-
     args = ActiveJob::Arguments.serialize(args)
+    scope = @job_class.set(@options.except(:wait, :wait_until))
 
-    scope = @job_class.set(options)
-    if wait
-      scope.perform_in(wait, *args)
-    elsif wait_until
-      scope.perform_at(wait_until, *args)
+    if @options[:wait]
+      scope.perform_in @options[:wait], *args
+    elsif @options[:wait_until]
+      scope.perform_at @options[:wait_until], *args
     else
-      scope.perform_async(*args)
+      scope.perform_async *args
     end
   end
+
+  alias_method :run!, :perform_later
+  alias_method :run, :perform_later
 end

@@ -11,7 +11,6 @@ module ActiveInteraction
 
     autoload :Core
     autoload :ConfiguredJob
-    autoload :DefaultJob
     autoload :JobHelper
 
     module Sidekiq
@@ -19,7 +18,6 @@ module ActiveInteraction
 
       autoload :Core
       autoload :ConfiguredJob
-      autoload :DefaultJob
       autoload :JobHelper
     end
   end

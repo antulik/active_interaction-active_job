@@ -20,7 +20,10 @@ gem 'active_interaction-active_job'
 ```ruby
 class Add < ActiveInteraction::Base
   include ActiveInteraction::ActiveJob::Core
-  # This creates Add::Job class
+
+  class Job < ActiveJob::Base
+    include ActiveInteraction::ActiveJob::JobHelper
+  end
 
   integer :x, :y
 
