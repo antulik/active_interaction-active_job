@@ -7,6 +7,10 @@ class ActiveInteraction::ActiveJob::Sidekiq::ConfiguredJob < ::ActiveJob::Config
     args = ActiveJob::Arguments.serialize(args)
     scope = @job_class.set(@options.except(:wait, :wait_until))
 
+    if @job_class.sidekiq_options['encrypt']
+      args.prepend(nil)
+    end
+
     if @options[:wait]
       scope.perform_in @options[:wait], *args
     elsif @options[:wait_until]
