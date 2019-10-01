@@ -1,5 +1,6 @@
 module ActiveInteraction::ActiveJob::Sidekiq::JobHelper
   def perform *args
+    # support for sidekiq encrypted params
     if args.length > 1 && args[0].nil?
       args.shift
     end
