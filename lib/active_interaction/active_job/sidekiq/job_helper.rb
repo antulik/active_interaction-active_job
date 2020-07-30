@@ -6,6 +6,10 @@ module ActiveInteraction::ActiveJob::Sidekiq::JobHelper
     end
 
     args = ActiveJob::Arguments.deserialize(args)
-    self.class.parent.run!(*args)
+    if self.class.respond_to?(:module_parent)
+      self.class.module_parent.run!(*args)
+    else
+      self.class.parent.run!(*args)
+    end
   end
 end
