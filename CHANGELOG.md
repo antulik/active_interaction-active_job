@@ -1,3 +1,6 @@
+### 0.3.2
+- Fix rails 6 deprecation warning (#2)
+
 ### 0.3.1
 - Add support for Sidekiq Enterprise Encryption 
 
