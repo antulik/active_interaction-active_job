@@ -1,4 +1,8 @@
-# ActiveInteraction::ActiveJob
+# ActiveInteraction::ActiveJob - [DEPRECATED]
+
+This gem has been merged into [active_interaction-extras](https://github.com/antulik/active_interaction-extras) gem.
+
+---
 
 [![Gem Version](https://badge.fury.io/rb/active_interaction-active_job.svg)](https://badge.fury.io/rb/active_interaction-active_job)
 
